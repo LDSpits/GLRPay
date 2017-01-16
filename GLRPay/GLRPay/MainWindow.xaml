@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GLRPay"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="1080" Width="1920"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Fill="#8fe507"/>
+
+        <StackPanel >
+            <TextBlock Text="GLRPay" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="70"/>
+        </StackPanel>
+
+        <Frame Grid.Row="1" x:Name="PageViewer" NavigationUIVisibility="Hidden">
+            
+        </Frame>
     </Grid>
 </Window>

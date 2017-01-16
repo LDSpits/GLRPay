@@ -1,0 +1,22 @@
+﻿<Page x:Class="GLRPay.pages.SetupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GLRPay.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="SetupPage">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Margin="0,0,0,20" Click="PinMode_Click">
+                <TextBlock Text="Pin Modus" Padding="50" FontSize="50"/>
+            </Button>
+
+            <Button Margin="0,20,0,0" Click="ChargeMode_Click">
+                <TextBlock Text="Oplaad Modus" Padding="50" FontSize="50"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

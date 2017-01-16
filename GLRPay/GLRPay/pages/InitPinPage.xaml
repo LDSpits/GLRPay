@@ -1,0 +1,27 @@
+﻿<Page x:Class="GLRPay.pages.InitPinPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GLRPay.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="InitPinPage">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Product name: " FontSize="30" HorizontalAlignment="Center"/>
+                <TextBox Name="txtProductName" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinWidth="514" MinHeight="3" Width="515" FontSize="30"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Product price: " FontSize="30" HorizontalAlignment="Center"/>
+                <TextBox Name="txtProductprice" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinWidth="520" MinHeight="3" Width="515" FontSize="30" Margin="3,10,0,0"/>
+            </StackPanel>
+
+            <TextBlock Text="Please Tap your card/device on the reader to continue" FontSize="30" HorizontalAlignment="Center"/>
+            <ProgressBar IsIndeterminate="True" Margin="0,5,0,0" Height="4"/>
+        </StackPanel>
+    </Grid>
+</Page>

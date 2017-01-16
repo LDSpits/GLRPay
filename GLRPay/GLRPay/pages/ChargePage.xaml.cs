@@ -1,5 +1,4 @@
-﻿using GLRPay.pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GLRPay
+namespace GLRPay.pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ChargePage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ChargePage : Page
     {
-        public MainWindow()
+        public ChargePage()
         {
             InitializeComponent();
-            PageViewer.Content = new SetupPage();
-
         }
     }
 }
