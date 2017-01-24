@@ -1,0 +1,35 @@
+﻿<Page x:Class="GLRPay.pages.ConfirmTransaction"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GLRPay.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="ConfirmTransaction">
+
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="do you want to pay?" Grid.ColumnSpan="2" FontSize="35" HorizontalAlignment="Center"/>
+
+            <Button Grid.Row="1" Background="#FF82F135" Foreground="White" Margin="0,0,5,0" Click="Button_Yes">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Yes" FontSize="35" FontFamily="arial" Margin="0,20"/>
+            </Button>
+
+            <Button Grid.Row="1" Grid.Column="1" Background="Red" Foreground="White" Margin="5,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Click="Button_No" >
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="No" FontSize="35" FontFamily="arial" Margin="0,20"/>
+            </Button>
+
+        </Grid>
+    </Grid>
+</Page>

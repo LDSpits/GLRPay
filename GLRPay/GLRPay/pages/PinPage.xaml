@@ -9,6 +9,23 @@
       Title="PinPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock FontSize="45" x:Name="txtProductName" HorizontalAlignment="Center"/>
+            <TextBlock FontSize="45" x:Name="txtProductPrice" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Tap your card to pay" FontSize="35"/>
+            <ProgressBar Grid.Row="1" IsIndeterminate="True" Height="2"/>
+        </Grid>
     </Grid>
 </Page>

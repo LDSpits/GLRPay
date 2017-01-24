@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NFC7;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GLRPay.pages
 {
@@ -20,9 +11,31 @@ namespace GLRPay.pages
     /// </summary>
     public partial class PinPage : Page
     {
-        public PinPage()
+        private NFC7handler NFCReader;
+        private Product CurrentProduct;
+        private GLRPayCard CurrentReciever;
+
+
+        public PinPage(Product pr, GLRPayCard Cr) : base()
         {
+            NFCReader = new NFC7handler();
+            
+            NFCReader.CardInsertEvent += NFCReader_CardInsertEvent;
+            
+            CurrentProduct = pr;
+            CurrentReciever = Cr;
             InitializeComponent();
+            txtProductName.Text = "product: " + pr.Name;
+            txtProductPrice.Text = "Price: " + pr.Price;
+
+        }
+
+        private void NFCReader_CardInsertEvent(object sender, EventArgs args)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() => {
+                Frame ViewFrame = (Frame)Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).FindName("PageViewer");
+                ViewFrame.Content = new ConfirmTransaction(CurrentProduct,CurrentReciever);
+            }));
         }
     }
 }

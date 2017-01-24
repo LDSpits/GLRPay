@@ -17,7 +17,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Product price: " FontSize="30" HorizontalAlignment="Center"/>
-                <TextBox Name="txtProductprice" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinWidth="520" MinHeight="3" Width="515" FontSize="30" Margin="3,10,0,0"/>
+                <TextBox PreviewTextInput="textBox1_PreviewTextInput" Name="txtProductprice" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinWidth="520" MinHeight="3" Width="515" FontSize="30" Margin="3,10,0,0"/>
             </StackPanel>
 
             <TextBlock Text="Please Tap your card/device on the reader to continue" FontSize="30" HorizontalAlignment="Center"/>

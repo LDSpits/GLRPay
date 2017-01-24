@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NFC7;
+using System;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using NFC7;
 
 namespace GLRPay.pages
 {
@@ -32,24 +22,37 @@ namespace GLRPay.pages
 
         private void Reader_CardInsertEvent(object sender, EventArgs args)
         {
-            Application.Current.Dispatcher.Invoke(new Action(() => {
-                Frame ViewFrame = (Frame)Window.GetWindow(this).FindName("PageViewer");
-                ViewFrame.Content = new PinPage();
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                //check of er iets in de blokken staat
+                if (txtProductName.Text.Length == 0 || txtProductprice.Text.Length == 0) {
+                    return;
+                }
+
+                GLRPayCard card = new GLRPayCard();
+                Frame ViewFrame = (Frame)Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).FindName("PageViewer");
+
+                //check of de kaart leeg is en of er iets staat in de general id locatie
+                if (!card.CheckValid()) {
+                    ViewFrame.Content = new NewCardPage();
+                }
+                else {
+                    ViewFrame.Content = new PinPage(new Product(float.Parse(txtProductprice.Text), txtProductName.Text),card);
+                }
             }));
-            
         }
 
-        private static bool IsTextAllowed(string text)
+        private void textBox1_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
-            return !regex.IsMatch(text);
+            if (!char.IsDigit(e.Text, e.Text.Length - 1))
+                e.Handled = true;
         }
 
         private void TextBoxPasting(object sender, DataObjectPastingEventArgs e)
         {
             if (e.DataObject.GetDataPresent(typeof(String))) {
                 String text = (String)e.DataObject.GetData(typeof(String));
-                if (!IsTextAllowed(text)) {
+                if (!char.IsDigit(text, text.Length - 1)) {
                     e.CancelCommand();
                 }
             }

@@ -13,5 +13,6 @@ namespace GLRPay
     /// </summary>
     public partial class App : Application
     {
+        public Product Pr { get; set; }
     }
 }
