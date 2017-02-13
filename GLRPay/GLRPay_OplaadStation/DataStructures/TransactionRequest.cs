@@ -1,31 +1,28 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Text;
+using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
 
-namespace GLRPay_OplaadStation.Data
+namespace GLRPay_OplaadStation
 {
-    public class TransferData
+    public class ListTransactionRequest
     {
-        public TransferData(string From, string To, float Amount)
+        public string JSON { get; private set; }
+
+        public ListTransactionRequest(string of)
         {
-            if (string.IsNullOrWhiteSpace(From) || string.IsNullOrWhiteSpace(To))
+            if (string.IsNullOrWhiteSpace(of))
                 throw new ArgumentNullException("the owners specified were null");
 
             JObject jsonObject = new JObject();
-            jsonObject.Add("op",(int)ServerOperation.Transaction);
+            jsonObject.Add("op", (int)ServerOperation.LogRequest);
 
             JArray array = new JArray();
-            array.Add(GetSHA256Hash(To));
-            array.Add(GetSHA256Hash(From));
-            array.Add(int.Parse((Amount * 100).ToString()));
+            array.Add(GetSHA256Hash(of));
 
-            jsonObject.Add("data",array);
+            jsonObject.Add("data", array);
             JSON = jsonObject.ToString();
         }
-
-        public string op = "transaction";
-        public string JSON { get; private set; }
 
         private string GetSHA256Hash(string Data)
         {
@@ -37,11 +34,5 @@ namespace GLRPay_OplaadStation.Data
             }
             return hash.ToString();
         }
-    }
-
-    public enum ServerOperation
-    {
-        Transaction,
-        Package
     }
 }

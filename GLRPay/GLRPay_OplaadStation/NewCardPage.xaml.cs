@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NFC7;
 
-namespace GLRPay_OplaadStation.pages
+namespace GLRPay_OplaadStation
 {
     /// <summary>
     /// Interaction logic for NewCardPage.xaml
@@ -38,7 +38,7 @@ namespace GLRPay_OplaadStation.pages
             NFCReader.WriteBlockText(1, 2, "0.00");
             Application.Current.Dispatcher.Invoke(new Action(() => {
                 Frame ViewFrame = (Frame)Window.GetWindow(this).FindName("PageViewer");
-                ViewFrame.Content = new InitPinPage();
+                ViewFrame.Content = new CardOverview();
             }));
         }
 
@@ -46,7 +46,7 @@ namespace GLRPay_OplaadStation.pages
         {
             Application.Current.Dispatcher.Invoke(new Action(() => {
                 Frame ViewFrame = (Frame)Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).FindName("PageViewer");
-                ViewFrame.Content = new InitPinPage();
+                ViewFrame.Content = new CardOverview();
             }));
         }
     }

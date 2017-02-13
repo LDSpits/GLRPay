@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GLRPay.pages
+namespace GLRPay_OplaadStation
 {
     /// <summary>
-    /// Interaction logic for ChargePage.xaml
+    /// Interaction logic for CardOverview.xaml
     /// </summary>
-    public partial class ChargePage : Page
+    public partial class CardOverview : Page
     {
-        public ChargePage()
+        public CardOverview()
         {
             InitializeComponent();
+            DataContext = new CardOverviewModel();
         }
     }
 }

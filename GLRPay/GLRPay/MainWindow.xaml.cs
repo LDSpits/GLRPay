@@ -1,4 +1,4 @@
-﻿using GLRPay.pages;
+﻿using GLRPay_OplaadStation.pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GLRPay
+namespace GLRPay_OplaadStation
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,8 +24,13 @@ namespace GLRPay
         public MainWindow()
         {
             InitializeComponent();
-            PageViewer.Content = new SetupPage();
+            PageViewer.Content = new InitPinPage();
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
         }
     }
 }

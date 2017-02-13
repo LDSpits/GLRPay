@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLRPay", "GLRPay\GLRPay.csproj", "{7C206F72-8B32-4D84-98B2-69219747EE57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaalStation", "GLRPay\BetaalStation.csproj", "{7C206F72-8B32-4D84-98B2-69219747EE57}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{11329FE0-93D1-4E21-9CE6-4DE6E5A8D85E}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\GLR_pay_pinningmachine\GLRPayMachine\DeviceData.cs = ..\..\GLR_pay_pinningmachine\GLRPayMachine\DeviceData.cs
-		..\..\GLR_pay_pinningmachine\GLRPayMachine\GLRPayFunctions.cs = ..\..\GLR_pay_pinningmachine\GLRPayMachine\GLRPayFunctions.cs
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OplaadStation", "GLRPay_OplaadStation\OplaadStation.csproj", "{685BC6F9-CBA2-46F9-8B2F-2375C7356262}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardWriteEmpty", "CardWriteEmpty\CardWriteEmpty.csproj", "{502D783A-567B-46AE-8349-94D6572A7244}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +19,14 @@ Global
 		{7C206F72-8B32-4D84-98B2-69219747EE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C206F72-8B32-4D84-98B2-69219747EE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C206F72-8B32-4D84-98B2-69219747EE57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{685BC6F9-CBA2-46F9-8B2F-2375C7356262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{685BC6F9-CBA2-46F9-8B2F-2375C7356262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{685BC6F9-CBA2-46F9-8B2F-2375C7356262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{685BC6F9-CBA2-46F9-8B2F-2375C7356262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{502D783A-567B-46AE-8349-94D6572A7244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{502D783A-567B-46AE-8349-94D6572A7244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{502D783A-567B-46AE-8349-94D6572A7244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{502D783A-567B-46AE-8349-94D6572A7244}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

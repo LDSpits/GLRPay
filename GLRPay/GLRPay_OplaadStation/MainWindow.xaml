@@ -5,12 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GLRPay_OplaadStation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920"
+        Title="GLRPay OplaadStation" Height="1080" Width="1920"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
-
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -36,4 +35,5 @@
             
         </Frame>
     </Grid>
+    
 </Window>

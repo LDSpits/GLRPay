@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace GLRPay
+namespace GLRPay_OplaadStation
 {
     public class Product : INotifyPropertyChanged
     {

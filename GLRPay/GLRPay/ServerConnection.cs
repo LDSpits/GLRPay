@@ -1,10 +1,10 @@
-﻿using GLRPay.Data;
-using Newtonsoft.Json;
+﻿using GLRPay_OplaadStation.Data;
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
 
-namespace GLRPay
+namespace GLRPay_OplaadStation
 {
     class ServerConnection
     {
@@ -12,7 +12,15 @@ namespace GLRPay
 
         public bool TransferMoney(string from, string to, float amount)
         {
-            TransferData information = new TransferData(from,to,amount);
+            TransferData information;
+
+            try {
+                information = new TransferData(from, to, amount);
+            }
+            catch (ArgumentNullException) {
+                System.Diagnostics.Debug.WriteLine("the from or to was null");
+                return false;
+            }
 
             System.Diagnostics.Debug.WriteLine(information.JSON);
 
@@ -26,15 +34,27 @@ namespace GLRPay
                 webstream.Write(data, 0, data.Length);
             }
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            if(response.StatusCode != HttpStatusCode.OK) {
-                System.Diagnostics.Debug.WriteLine("the request failed");
-                return false;
-            }
-            else {
-                System.Diagnostics.Debug.WriteLine("the request was sucessfull");
+            try {
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                using(StreamReader reader = new StreamReader(response.GetResponseStream())) {
+                    System.Diagnostics.Debug.WriteLine(reader.ReadToEnd());
+                }
                 return true;
             }
+            catch (WebException ex){
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine("begin writing response");
+
+                using (StreamReader reader = new StreamReader(ex.Response.GetResponseStream())) {
+                    System.Diagnostics.Debug.WriteLine(reader.ReadToEnd());
+                }
+
+                System.Diagnostics.Debug.WriteLine("end writing response");
+#endif
+                return false;
+            }
+            
         }
     }
 

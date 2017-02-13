@@ -5,40 +5,37 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace GLRPay.pages
+namespace GLRPay_OplaadStation.pages
 {
     /// <summary>
     /// Interaction logic for InitPinPage.xaml
     /// </summary>
     public partial class InitPinPage : Page
     {
-        NFC7handler reader = new NFC7handler();
+        GLRPayCard card;
 
         public InitPinPage()
         {
             InitializeComponent();
-            reader.CardInsertEvent += Reader_CardInsertEvent;
+            card = new GLRPayCard();
+            card.HasCardInserted += Card_HasCardInserted;
         }
 
-        private void Reader_CardInsertEvent(object sender, EventArgs args)
+        private void Card_HasCardInserted(object sender, EventArgs e)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 //check of er iets in de blokken staat
-                if (txtProductName.Text.Length == 0 || txtProductprice.Text.Length == 0) {
+                if (txtProductName.Text.Length == 0 || txtProductprice.Text.Length == 0) 
                     return;
-                }
 
-                GLRPayCard card = new GLRPayCard();
                 Frame ViewFrame = (Frame)Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).FindName("PageViewer");
 
                 //check of de kaart leeg is en of er iets staat in de general id locatie
-                if (!card.CheckValid()) {
+                if (!card.CardValid) 
                     ViewFrame.Content = new NewCardPage();
-                }
-                else {
-                    ViewFrame.Content = new PinPage(new Product(float.Parse(txtProductprice.Text), txtProductName.Text),card);
-                }
+                else 
+                    ViewFrame.Content = new PinPage(new Product(float.Parse(txtProductprice.Text), txtProductName.Text), card);
             }));
         }
 

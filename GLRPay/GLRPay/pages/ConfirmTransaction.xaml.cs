@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace GLRPay.pages
+namespace GLRPay_OplaadStation.pages
 {
     /// <summary>
     /// Interaction logic for ConfirmTransaction.xaml
@@ -22,26 +12,49 @@ namespace GLRPay.pages
     {
         private ServerConnection connection;
         GLRPayCard reciever;
+        GLRPayCard payer;
         Product product;
 
-        public ConfirmTransaction(Product pr,GLRPayCard reciever) : base()
+        public ConfirmTransaction(Product Product,GLRPayCard Reciever, GLRPayCard Payer) : base()
         {
-            connection = new ServerConnection();
-            InitializeComponent();
+            if (Product.Name != null) 
+                product = Product;
+            else 
+                throw new ArgumentNullException("the argument given is null");
 
-            product = pr;
-            this.reciever = reciever;
+            if (!Reciever.CardValid) 
+                throw new ArgumentException("the reciever card is not valid!");
+
+            if (!Payer.CardValid)
+                throw new NullReferenceException("the payer card object is not valid!");
+
+            connection = new ServerConnection();
+
+            reciever = Reciever;
+            payer = Payer;
+
+            InitializeComponent();
         }
 
         private void Button_Yes(object sender, RoutedEventArgs e)
         {
-            GLRPayCard payerCard = new GLRPayCard();
-            connection.TransferMoney(payerCard.Identifier, reciever.Identifier, product.Price);
+            if (connection.TransferMoney(payer.Identifier, reciever.Identifier, product.Price)) {
+                Application.Current.Dispatcher.Invoke(new Action(() => {
+                    Frame ViewFrame = (Frame)Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).FindName("PageViewer");
+                    ViewFrame.Content = new PinPage(product, reciever);
+                }));
+            }
+            else {
+
+            }
         }
 
         private void Button_No(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Dispatcher.Invoke(new Action(() => {
+                Frame ViewFrame = (Frame)Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).FindName("PageViewer");
+                ViewFrame.Content = new PinPage(product, reciever);
+            }));
         }
     }
 }

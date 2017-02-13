@@ -75,15 +75,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DeviceData.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="pages\ChargePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="pages\ConfirmTransaction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,15 +95,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\SetupPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pages\ChargePage.xaml.cs">
-      <DependentUpon>ChargePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GLRPayCard.cs" />
     <Compile Include="pages\InitPinPage.xaml.cs">
       <DependentUpon>InitPinPage.xaml</DependentUpon>
@@ -118,9 +106,6 @@
     </Compile>
     <Compile Include="pages\PinPage.xaml.cs">
       <DependentUpon>PinPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\SetupPage.xaml.cs">
-      <DependentUpon>SetupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -4,38 +4,39 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace GLRPay.pages
+namespace GLRPay_OplaadStation.pages
 {
     /// <summary>
     /// Interaction logic for PinPage.xaml
     /// </summary>
     public partial class PinPage : Page
     {
-        private NFC7handler NFCReader;
-        private Product CurrentProduct;
-        private GLRPayCard CurrentReciever;
+        private Product currentProduct;
+        private GLRPayCard currentReciever;
+        private GLRPayCard currentPayer;
 
 
-        public PinPage(Product pr, GLRPayCard Cr) : base()
+        public PinPage(Product Product, GLRPayCard Reciever) : base()
         {
-            NFCReader = new NFC7handler();
-            
-            NFCReader.CardInsertEvent += NFCReader_CardInsertEvent;
-            
-            CurrentProduct = pr;
-            CurrentReciever = Cr;
+            currentPayer = new GLRPayCard();
+            currentPayer.HasCardInserted += CurrentPayer_HasCardInserted;
+            currentProduct = Product;
+            currentReciever = Reciever;
+
             InitializeComponent();
-            txtProductName.Text = "product: " + pr.Name;
-            txtProductPrice.Text = "Price: " + pr.Price;
+            txtProductName.Text = "product: " + Product.Name;
+            txtProductPrice.Text = "Price: " + Product.Price;
 
         }
 
-        private void NFCReader_CardInsertEvent(object sender, EventArgs args)
+        private void CurrentPayer_HasCardInserted(object sender, EventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(new Action(() => {
-                Frame ViewFrame = (Frame)Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).FindName("PageViewer");
-                ViewFrame.Content = new ConfirmTransaction(CurrentProduct,CurrentReciever);
-            }));
+            if (currentPayer.CardValid) {
+                Application.Current.Dispatcher.Invoke(new Action(() => {
+                    Frame ViewFrame = (Frame)Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).FindName("PageViewer");
+                    ViewFrame.Content = new ConfirmTransaction(currentProduct, currentReciever, currentPayer);
+                }));
+            } 
         }
     }
 }

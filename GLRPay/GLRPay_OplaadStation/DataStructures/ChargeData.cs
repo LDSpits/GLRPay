@@ -3,28 +3,28 @@ using System;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace GLRPay_OplaadStation.Data
+namespace GLRPay_OplaadStation
 {
-    public class TransferData
+    public class ChargeData
     {
-        public TransferData(string From, string To, float Amount)
+        public ChargeData(string To, float Amount)
         {
-            if (string.IsNullOrWhiteSpace(From) || string.IsNullOrWhiteSpace(To))
+            if (string.IsNullOrWhiteSpace(To))
                 throw new ArgumentNullException("the owners specified were null");
 
             JObject jsonObject = new JObject();
-            jsonObject.Add("op",(int)ServerOperation.Transaction);
+            jsonObject.Add("op",(int)ServerOperation.ChargeOperation);
 
             JArray array = new JArray();
             array.Add(GetSHA256Hash(To));
-            array.Add(GetSHA256Hash(From));
+            array.Add(GetSHA256Hash("932678600446695831824974795761"));
             array.Add(int.Parse((Amount * 100).ToString()));
 
             jsonObject.Add("data",array);
             JSON = jsonObject.ToString();
         }
 
-        public string op = "transaction";
+        public string op = ServerOperation.ChargeOperation.ToString();
         public string JSON { get; private set; }
 
         private string GetSHA256Hash(string Data)
@@ -42,6 +42,7 @@ namespace GLRPay_OplaadStation.Data
     public enum ServerOperation
     {
         Transaction,
-        Package
+        ChargeOperation,
+        LogRequest
     }
 }
